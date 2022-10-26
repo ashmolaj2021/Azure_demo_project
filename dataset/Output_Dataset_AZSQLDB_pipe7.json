@@ -1,0 +1,17 @@
+{
+	"name": "Output_Dataset_AZSQLDB_pipe7",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Materials"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

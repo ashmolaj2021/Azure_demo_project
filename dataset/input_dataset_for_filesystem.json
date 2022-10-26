@@ -1,0 +1,32 @@
+{
+	"name": "input_dataset_for_filesystem",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Excelfile",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"sourcefilename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FileServerLocation",
+				"fileName": {
+					"value": "@dataset().sourcefilename",
+					"type": "Expression"
+				},
+				"folderPath": "SQL_Sample_files"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,18 @@
+{
+	"name": "trigger1",
+	"properties": {
+		"description": "For pipe 3- Another way of triggering a pipeline",
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-07-21T03:21:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}

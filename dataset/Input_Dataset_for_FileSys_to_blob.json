@@ -1,0 +1,21 @@
+{
+	"name": "Input_Dataset_for_FileSys_to_blob",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Excelfile",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Sheet1",
+			"location": {
+				"type": "FileServerLocation",
+				"fileName": "Material.xlsx"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

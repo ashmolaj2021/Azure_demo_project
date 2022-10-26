@@ -1,0 +1,36 @@
+{
+	"name": "output_blobstorage",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"sinkfilename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().sinkfilename",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@formatDateTime(utcnow(),'dd_MM_yyyy')",
+					"type": "Expression"
+				},
+				"container": "folder-for-sql-proj1-1"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

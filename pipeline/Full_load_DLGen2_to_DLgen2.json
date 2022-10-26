@@ -1,0 +1,135 @@
+{
+	"name": "Full_load_DLGen2_to_DLgen2",
+	"properties": {
+		"description": "With reference to pipe 13",
+		"activities": [
+			{
+				"name": "Metadata_reference_lookup",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "DS_Metadata_lookup_pipe14",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Metadata_reference_lookup",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Metadata_reference_lookup').output.value",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "CopydatafullloadDLgen2toDLgen2",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "Input_DS_full_load_pipe14",
+									"type": "DatasetReference",
+									"parameters": {
+										"Sourcetablename": {
+											"value": "@item().sourcefilename\r\n",
+											"type": "Expression"
+										},
+										"Sourcefoldername": {
+											"value": "@item().sourcepath\r\n",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Output_Full_load_pipe14",
+									"type": "DatasetReference",
+									"parameters": {
+										"sinkfoldername": {
+											"value": "@item().sinkpath\r\n",
+											"type": "Expression"
+										},
+										"sinkfilename": {
+											"value": "@item().sinkfilename\r\n",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2022-09-27T08:51:59Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

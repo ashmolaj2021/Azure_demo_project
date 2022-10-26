@@ -1,0 +1,23 @@
+{
+	"name": "AzureSqlDatabase2",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=sql-demo-server-1008.database.windows.net;Initial Catalog=DemoSQL-Database;User ID=SQL_server_demo",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVaultSQL",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "SQLserverpwd"
+			}
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime1",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

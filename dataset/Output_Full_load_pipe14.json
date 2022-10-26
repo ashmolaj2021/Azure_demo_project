@@ -1,0 +1,39 @@
+{
+	"name": "Output_Full_load_pipe14",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage2",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"sinkfoldername": {
+				"type": "string"
+			},
+			"sinkfilename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().sinkfilename",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().sinkfoldername",
+					"type": "Expression"
+				},
+				"fileSystem": "output-for-pipe14"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
