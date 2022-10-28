@@ -1,0 +1,186 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "demoinstance111"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"AzureDataLakeStorage2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage2'"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
+		},
+		"AzureSqlDatabase2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase2'"
+		},
+		"Excelfile_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Excelfile'"
+		},
+		"MySqlworkbench_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'MySqlworkbench'"
+		},
+		"AzureDataLakeStorage2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://demonewdatalakegen2.dfs.core.windows.net/"
+		},
+		"AzureKeyVaultSQL_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://Azuresqlserverkey.vault.azure.net/"
+		},
+		"Excelfile_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "C:\\Users\\ashwi\\OneDrive\\Desktop"
+		},
+		"Excelfile_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "ashwi"
+		},
+		"AzureDataLakeStorage844_properties_privateLinkResourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/c5e7f1b3-e626-4571-bde3-793a7c16ba98/resourceGroups/Newresourcegroup/providers/Microsoft.Storage/storageAccounts/demonewdatalakegen2"
+		},
+		"AzureDataLakeStorage844_properties_groupId": {
+			"type": "string",
+			"defaultValue": "dfs"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "demoinstance111_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureBlobStorage1_connectionString": {
+						"value": "[parameters('AzureBlobStorage1_connectionString')]"
+					},
+					"AzureDataLakeStorage2_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage2_accountKey')]"
+					},
+					"AzureSqlDatabase1_connectionString": {
+						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
+					},
+					"AzureSqlDatabase2_connectionString": {
+						"value": "[parameters('AzureSqlDatabase2_connectionString')]"
+					},
+					"Excelfile_password": {
+						"value": "[parameters('Excelfile_password')]"
+					},
+					"MySqlworkbench_connectionString": {
+						"value": "[parameters('MySqlworkbench_connectionString')]"
+					},
+					"AzureKeyVaultSQL_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVaultSQL_properties_typeProperties_baseUrl')]"
+					},
+					"AzureDataLakeStorage2_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage2_properties_typeProperties_url')]"
+					},
+					"Excelfile_properties_typeProperties_host": {
+						"value": "[parameters('Excelfile_properties_typeProperties_host')]"
+					},
+					"Excelfile_properties_typeProperties_userId": {
+						"value": "[parameters('Excelfile_properties_typeProperties_userId')]"
+					},
+					"AzureDataLakeStorage844_properties_privateLinkResourceId": {
+						"value": "[parameters('AzureDataLakeStorage844_properties_privateLinkResourceId')]"
+					},
+					"AzureDataLakeStorage844_properties_groupId": {
+						"value": "[parameters('AzureDataLakeStorage844_properties_groupId')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "demoinstance111_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'demoinstance111_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "demoinstance111_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'demoinstance111_ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "demoinstance111_ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'demoinstance111_ArmTemplate_2')]"
+			]
+		}
+	]
+}

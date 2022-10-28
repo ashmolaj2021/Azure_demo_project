@@ -1,0 +1,51 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "demoinstance111"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage2_accountKey": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase2_connectionString": {
+			"value": ""
+		},
+		"Excelfile_password": {
+			"value": ""
+		},
+		"MySqlworkbench_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage2_properties_typeProperties_url": {
+			"value": "https://demonewdatalakegen2.dfs.core.windows.net/"
+		},
+		"AzureKeyVaultSQL_properties_typeProperties_baseUrl": {
+			"value": "https://Azuresqlserverkey.vault.azure.net/"
+		},
+		"Excelfile_properties_typeProperties_host": {
+			"value": "C:\\Users\\ashwi\\OneDrive\\Desktop"
+		},
+		"Excelfile_properties_typeProperties_userId": {
+			"value": "ashwi"
+		},
+		"AzureDataLakeStorage844_properties_privateLinkResourceId": {
+			"value": "/subscriptions/c5e7f1b3-e626-4571-bde3-793a7c16ba98/resourceGroups/Newresourcegroup/providers/Microsoft.Storage/storageAccounts/demonewdatalakegen2"
+		},
+		"AzureDataLakeStorage844_properties_groupId": {
+			"value": "dfs"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
