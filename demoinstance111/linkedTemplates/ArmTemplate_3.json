@@ -367,7 +367,7 @@
 											"type": "DatasetReference",
 											"parameters": {
 												"sourcefilename": {
-													"value": "@item().sourcefilename\r\n",
+													"value": "@item().sourcefilename\n",
 													"type": "Expression"
 												}
 											}
@@ -385,6 +385,49 @@
 											}
 										}
 									]
+								},
+								{
+									"name": "Stored procedure1_copy1",
+									"type": "SqlServerStoredProcedure",
+									"dependsOn": [
+										{
+											"activity": "Copy data1",
+											"dependencyConditions": [
+												"Completed"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"storedProcedureName": "[[dbo].[pipeline_blob_status]",
+										"storedProcedureParameters": {
+											"status": {
+												"value": {
+													"value": "@activity('Copy data1').Status",
+													"type": "Expression"
+												},
+												"type": "String"
+											},
+											"table": {
+												"value": {
+													"value": "@item().sourcefilename\n",
+													"type": "Expression"
+												},
+												"type": "String"
+											}
+										}
+									},
+									"linkedServiceName": {
+										"referenceName": "AzureSqlDatabase1",
+										"type": "LinkedServiceReference"
+									}
 								}
 							]
 						}
@@ -476,6 +519,42 @@
 											}
 										}
 									]
+								},
+								{
+									"name": "Stored procedure2",
+									"type": "SqlServerStoredProcedure",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"storedProcedureName": "[[dbo].[pipeline_sqldb_status]",
+										"storedProcedureParameters": {
+											"status": {
+												"value": {
+													"value": "@activity('Copy data1').status",
+													"type": "Expression"
+												},
+												"type": "String"
+											},
+											"table": {
+												"value": {
+													"value": "@item().sinkfilename",
+													"type": "Expression"
+												},
+												"type": "String"
+											}
+										}
+									},
+									"linkedServiceName": {
+										"referenceName": "AzureSqlDatabase1",
+										"type": "LinkedServiceReference"
+									}
 								}
 							]
 						}

@@ -21,7 +21,8 @@
 		},
 		"AzureSqlDatabase2_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase2'"
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase2'",
+			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=sql-demo-server-1008.database.windows.net;Initial Catalog=DemoSQL-Database;User ID=SQL_server_demo"
 		},
 		"Excelfile_password": {
 			"type": "secureString",

@@ -15,7 +15,7 @@
 			"value": ""
 		},
 		"AzureSqlDatabase2_connectionString": {
-			"value": ""
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=sql-demo-server-1008.database.windows.net;Initial Catalog=DemoSQL-Database;User ID=SQL_server_demo"
 		},
 		"Excelfile_password": {
 			"value": ""
