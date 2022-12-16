@@ -1,5 +1,5 @@
 {
-	"name": "dataflow1",
+	"name": "dataflow_demo",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -78,8 +78,22 @@
 				"     broadcast: 'auto')~> join1",
 				"join1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     partitionFileNames:['sales_data_per_product'],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> output"
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          SalesOrderID,",
+				"          SalesOrderDetailID,",
+				"          OrderQty,",
+				"          ProductID = Salesdata@ProductID,",
+				"          UnitPrice,",
+				"          UnitPriceDiscount,",
+				"          LineTotal,",
+				"          rowguid = Salesdata@rowguid,",
+				"          ProductID = Productdata@ProductID,",
+				"          Name,",
+				"          StandardCost",
+				"     )) ~> output"
 			]
 		}
 	}
