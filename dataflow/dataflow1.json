@@ -1,0 +1,86 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "source1blob",
+						"type": "DatasetReference"
+					},
+					"name": "Salesdata",
+					"description": "Add source dataBlobstorage"
+				},
+				{
+					"dataset": {
+						"referenceName": "source2blob",
+						"type": "DatasetReference"
+					},
+					"name": "Productdata"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Output_of_Join",
+						"type": "DatasetReference"
+					},
+					"name": "output"
+				}
+			],
+			"transformations": [
+				{
+					"name": "join1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          SalesOrderID as string,",
+				"          SalesOrderDetailID as string,",
+				"          OrderQty as string,",
+				"          ProductID as string,",
+				"          UnitPrice as string,",
+				"          UnitPriceDiscount as string,",
+				"          LineTotal as string,",
+				"          rowguid as string,",
+				"          ModifiedDate as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Salesdata",
+				"source(output(",
+				"          ProductID as string,",
+				"          Name as string,",
+				"          ProductNumber as string,",
+				"          Color as string,",
+				"          StandardCost as string,",
+				"          ListPrice as string,",
+				"          Size as string,",
+				"          Weight as string,",
+				"          ProductCategoryID as string,",
+				"          ProductModelID as string,",
+				"          SellStartDate as string,",
+				"          SellEndDate as string,",
+				"          DiscontinuedDate as string,",
+				"          ThumbNailPhoto as string,",
+				"          ThumbnailPhotoFileName as string,",
+				"          rowguid as string,",
+				"          ModifiedDate as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Productdata",
+				"Salesdata, Productdata join(Salesdata@ProductID == Productdata@ProductID,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> output"
+			]
+		}
+	}
+}
