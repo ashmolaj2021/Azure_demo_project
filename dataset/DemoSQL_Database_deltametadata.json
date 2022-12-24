@@ -1,0 +1,49 @@
+{
+	"name": "DemoSQL_Database_deltametadata",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "sourceschema",
+				"type": "varchar"
+			},
+			{
+				"name": "sourcetable",
+				"type": "varchar"
+			},
+			{
+				"name": "lakepath",
+				"type": "varchar"
+			},
+			{
+				"name": "laketablename",
+				"type": "varchar"
+			},
+			{
+				"name": "sqlschema",
+				"type": "varchar"
+			},
+			{
+				"name": "sqltable",
+				"type": "varchar"
+			},
+			{
+				"name": "watermark",
+				"type": "date"
+			},
+			{
+				"name": "flag",
+				"type": "bit"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "deltametadata"
+		}
+	}
+}
