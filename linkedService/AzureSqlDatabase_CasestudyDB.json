@@ -1,0 +1,16 @@
+{
+	"name": "AzureSqlDatabase_CasestudyDB",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=sql-demo-server-1008.database.windows.net;initial catalog=Case_study2_Pizza_Runner;user id=SQL_server_demo",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQERGNzRGM0JDLTQ1NzQtNDJFMS1BNDY2LTFCQzM2NUREQzdDQl9hMDM2YmQ4OS02YWZlLTRhNjctODE0Ny00ODUwMDY1MWM3ZmQiDQp9"
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime1",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
