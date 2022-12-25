@@ -217,6 +217,10 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup_metadatadelta').output",
+						"type": "Expression"
+					},
 					"activities": [
 						{
 							"name": "Copy data2",
