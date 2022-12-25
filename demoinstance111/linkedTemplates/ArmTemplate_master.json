@@ -24,6 +24,10 @@
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase2'",
 			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=sql-demo-server-1008.database.windows.net;Initial Catalog=DemoSQL-Database;User ID=SQL_server_demo"
 		},
+		"AzureSqlDatabase_CasestudyDB_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase_CasestudyDB'"
+		},
 		"Excelfile_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'Excelfile'"
@@ -94,6 +98,9 @@
 					},
 					"AzureSqlDatabase2_connectionString": {
 						"value": "[parameters('AzureSqlDatabase2_connectionString')]"
+					},
+					"AzureSqlDatabase_CasestudyDB_connectionString": {
+						"value": "[parameters('AzureSqlDatabase_CasestudyDB_connectionString')]"
 					},
 					"Excelfile_password": {
 						"value": "[parameters('Excelfile_password')]"
