@@ -246,7 +246,11 @@
 									"type": "AzureSqlSink",
 									"writeBehavior": "upsert",
 									"upsertSettings": {
-										"useTempDB": true
+										"useTempDB": true,
+										"keys": {
+											"value": "@array(item().keycolumn)",
+											"type": "Expression"
+										}
 									},
 									"sqlWriterUseTableLock": false,
 									"disableMetricsCollection": false
